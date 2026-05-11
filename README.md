@@ -97,6 +97,7 @@ Wejdź na `http://localhost:42569` - przy pierwszym uruchomieniu zostaniesz prze
 nano halnyfucker.service
 # po zmianie ustawien w halnyfuckerze
 sudo cp halnyfucker.service /etc/systemd/system/
+sudo systemctl daemon-reload
 sudo systemctl enable halnyfucker
 sudo systemctl start halnyfucker
 ```
