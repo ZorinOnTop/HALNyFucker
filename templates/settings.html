@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pl" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ustawienia · HALNyFucker</title>
+    <script src="{{ url_for('static', filename='js/color-modes.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+    <style>
+      body { min-height: 100vh; }
+      .navbar-brand img { height: 32px; }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+      </symbol>
+    </svg>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/dashboard">
+          <img src="{{ url_for('static', filename='logo/logo.svg') }}" alt="Logo" />
+          HALNyFucker
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">Strona główna</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/notifications">Powiadomienia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/settings">Ustawienia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api-docs">Dokumentacja API</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary btn-sm dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Toggle theme (auto)">
+                <svg class="bi my-1 theme-icon-active" width="16" height="16" aria-hidden="true">
+                  <use href="#circle-half"></use>
+                </svg>
+                <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                    <svg class="bi me-2 opacity-50" width="16" height="16"><use href="#sun-fill"></use></svg>
+                    Jasny
+                    <svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                    <svg class="bi me-2 opacity-50" width="16" height="16"><use href="#moon-stars-fill"></use></svg>
+                    Ciemny
+                    <svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+                    <svg class="bi me-2 opacity-50" width="16" height="16"><use href="#circle-half"></use></svg>
+                    Automatyczny
+                    <svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <span class="text-body-secondary">{{ username }}</span>
+            <a href="/logout" class="btn btn-outline-danger btn-sm">Wyloguj</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container mt-4">
+      <h2 class="mb-4">Ustawienia</h2>
+
+      <div id="alertContainer"></div>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h5 class="card-title mb-1">Dodaj automatycznie porty</h5>
+              <p class="card-text text-body-secondary mb-0">Uruchom tą opcję, jeżeli wkurza cię, że UPnP ci usunęło wszystkie porty przez jednego crasha.</p>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="autoAddPorts" style="width: 3em; height: 1.5em;" {{ 'checked' if settings.auto_add_ports else '' }}>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h5 class="card-title mb-1">Uruchamiaj automatycznie UPnP</h5>
+              <p class="card-text text-body-secondary mb-0">Uruchom tą opcję, jeżeli losowo crashuje ci się UPnP. Wtedy, HALNyFucker sprawdza co minutę, czy UPnP działa. Jeżeli losowo scrashuje ci się UPnP, HALNyFucker loguje się do twojego Routera i uruchamia UPnP ponownie.</p>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="autoRestartUpnp" style="width: 3em; height: 1.5em;" {{ 'checked' if settings.auto_restart_upnp else '' }}>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Klucz API Logo.dev</h5>
+          <p class="card-text text-body-secondary mb-3">Dodaj klucz API z <a href="https://logo.dev" target="_blank">logo.dev</a>, żeby w tabeli portów wyświetlały się logo usług.</p>
+          <div class="input-group">
+            <input type="text" class="form-control" id="logodevApiKey" placeholder="pk_..." value="{{ settings.logodev_api_key or '' }}">
+            <button class="btn btn-primary" type="button" id="saveApiKeyBtn">Zapisz</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Klucz API HALNyFucker</h5>
+          <p class="card-text text-body-secondary mb-3">Wygeneruj klucz API, żeby sterować HALNyFuckerem z zewnętrznych aplikacji. Używaj nagłówka <code>X-API-Key</code> w requestach do <code>/api/v1/...</code></p>
+          <div class="input-group">
+            <input type="text" class="form-control" id="apiKeyDisplay" value="{{ settings.api_key or '' }}" readonly placeholder="Brak klucza — wygeneruj nowy">
+            <button class="btn btn-outline-secondary" type="button" onclick="navigator.clipboard.writeText(document.getElementById('apiKeyDisplay').value)" title="Kopiuj">📋</button>
+            <button class="btn btn-warning" type="button" id="generateApiKeyBtn">Wygeneruj nowy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('autoAddPorts').addEventListener('change', function() {
+        updateSetting('auto_add_ports', this.checked);
+      });
+
+      document.getElementById('autoRestartUpnp').addEventListener('change', function() {
+        updateSetting('auto_restart_upnp', this.checked);
+      });
+
+      document.getElementById('saveApiKeyBtn').addEventListener('click', async function() {
+        const key = document.getElementById('logodevApiKey').value.trim();
+        try {
+          const formData = new FormData();
+          formData.append('key', 'logodev_api_key');
+          formData.append('value', key);
+
+          const response = await fetch('/api/settings', {
+            method: 'POST',
+            body: formData
+          });
+
+          const data = await response.json();
+          if (data.success) {
+            showAlert('Klucz API zapisany.', 'success');
+          } else {
+            showAlert(data.error, 'danger');
+          }
+        } catch (error) {
+          showAlert('Błąd: ' + error.message, 'danger');
+        }
+      });
+
+      document.getElementById('generateApiKeyBtn').addEventListener('click', async function() {
+        if (!confirm('Wygenerować nowy klucz API? Stary przestanie działać.')) return;
+        
+        try {
+          const response = await fetch('/api/generate_api_key', { method: 'POST' });
+          const data = await response.json();
+          
+          if (data.success) {
+            document.getElementById('apiKeyDisplay').value = data.api_key;
+            showAlert('Nowy klucz API wygenerowany.', 'success');
+          } else {
+            showAlert(data.error, 'danger');
+          }
+        } catch (error) {
+          showAlert('Błąd: ' + error.message, 'danger');
+        }
+      });
+
+      async function updateSetting(key, value) {
+        try {
+          const formData = new FormData();
+          formData.append('key', key);
+          formData.append('value', value ? '1' : '0');
+
+          const response = await fetch('/api/settings', {
+            method: 'POST',
+            body: formData
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            showAlert('Ustawienie zapisane.', 'success');
+          } else {
+            showAlert(data.error, 'danger');
+          }
+        } catch (error) {
+          showAlert('Błąd: ' + error.message, 'danger');
+        }
+      }
+
+      function showAlert(message, type) {
+        const container = document.getElementById('alertContainer');
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type} alert-dismissible fade show`;
+        alert.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+        container.appendChild(alert);
+        setTimeout(() => {
+          alert.classList.remove('show');
+          setTimeout(() => alert.remove(), 150);
+        }, 3000);
+      }
+    </script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  </body>
+</html>

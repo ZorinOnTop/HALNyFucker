@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="pl" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard · HALNyFucker</title>
+    <script src="{{ url_for('static', filename='js/color-modes.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+    <style>
+      body {
+        min-height: 100vh;
+      }
+      .navbar-brand img {
+        height: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+      </symbol>
+    </svg>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/dashboard">
+          <img src="{{ url_for('static', filename='logo/logo.svg') }}" alt="Logo" />
+          HALNyFucker
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/dashboard">Strona główna</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/notifications">Powiadomienia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/settings">Ustawienia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api-docs">Dokumentacja API</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <!-- Theme toggle -->
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary btn-sm dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Toggle theme (auto)">
+                <svg class="bi my-1 theme-icon-active" width="16" height="16" aria-hidden="true">
+                  <use href="#circle-half"></use>
+                </svg>
+                <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                    <svg class="bi me-2 opacity-50" width="16" height="16"><use href="#sun-fill"></use></svg>
+                    Jasny
+                    <svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                    <svg class="bi me-2 opacity-50" width="16" height="16"><use href="#moon-stars-fill"></use></svg>
+                    Ciemny
+                    <svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+                    <svg class="bi me-2 opacity-50" width="16" height="16"><use href="#circle-half"></use></svg>
+                    Automatyczny
+                    <svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <span class="text-body-secondary">{{ username }}</span>
+            <a href="/logout" class="btn btn-outline-danger btn-sm">Wyloguj</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Przekierowania portów</h2>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPortModal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg me-1" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+          </svg>
+          Dodaj port
+        </button>
+      </div>
+
+      <div id="alertContainer"></div>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>Logo</th>
+              <th>#</th>
+              <th>Protokół</th>
+              <th>Port zewnętrzny</th>
+              <th>Adres wewnętrzny</th>
+              <th>Port wewnętrzny</th>
+              <th>Opis</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody id="portsTableBody">
+            <tr id="emptyRow">
+              <td colspan="8" class="text-center text-body-secondary py-4">
+                Brak przekierowań portów. Kliknij "Dodaj port" aby dodać nowe.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Add Port Modal -->
+    <div class="modal fade" id="addPortModal" tabindex="-1" aria-labelledby="addPortModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addPortModalLabel">Dodaj przekierowanie portu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+          </div>
+          <form id="addPortForm">
+            <div class="modal-body">
+              <div id="modalError" class="alert alert-danger" style="display: none;"></div>
+              <div class="mb-3">
+                <label for="protocol" class="form-label">Protokół</label>
+                <select class="form-select" id="protocol" name="protocol" required>
+                  <option value="TCP">TCP</option>
+                  <option value="UDP">UDP</option>
+                  <option value="TCP/UDP">TCP/UDP</option>
+                </select>
+                <div class="form-text">TCP — strony, gry, SSH itp. UDP — voice chat, streaming. Nie wiesz? Wybierz TCP/UDP.</div>
+              </div>
+              <div class="mb-3">
+                <label for="external_port" class="form-label">Port zewnętrzny</label>
+                <input type="number" class="form-control" id="external_port" name="external_port" min="1" max="65535" required />
+                <div class="form-text">Port, pod którym usługa będzie widoczna z internetu (np. 25565 dla Minecrafta).</div>
+              </div>
+              <div class="mb-3">
+                <label for="internal_address" class="form-label">Adres wewnętrzny</label>
+                <input type="text" class="form-control" id="internal_address" name="internal_address" placeholder="np. 192.168.55.100" required />
+                <div class="form-text">Lokalny adres IP komputera, na którym działa usługa. Znajdziesz go w ustawieniach sieci.</div>
+              </div>
+              <div class="mb-3">
+                <label for="internal_port" class="form-label">Port wewnętrzny</label>
+                <input type="number" class="form-control" id="internal_port" name="internal_port" min="1" max="65535" required />
+                <div class="form-text">Port, na którym usługa nasłuchuje na twoim komputerze. Zazwyczaj taki sam jak zewnętrzny.</div>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Opis</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="np. Serwer Minecraft" required />
+                <div class="form-text">Krótka nazwa, żebyś wiedział co to za port (tylko dla ciebie).</div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+              <button type="submit" class="btn btn-primary" id="addPortBtn">Dodaj</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Load ports on page load
+      const logodevApiKey = "{{ logodev_api_key or '' }}";
+
+      document.addEventListener('DOMContentLoaded', loadPorts);
+
+      async function loadPorts() {
+        try {
+          const response = await fetch('/api/ports');
+          const data = await response.json();
+          
+          if (data.success) {
+            renderPorts(data.ports);
+          }
+        } catch (error) {
+          showAlert('Błąd ładowania portów: ' + error.message, 'danger');
+        }
+      }
+
+      function renderPorts(ports) {
+        const tbody = document.getElementById('portsTableBody');
+        
+        if (ports.length === 0) {
+          tbody.innerHTML = `
+            <tr id="emptyRow">
+              <td colspan="8" class="text-center text-body-secondary py-4">
+                Brak przekierowań portów. Kliknij "Dodaj port" aby dodać nowe.
+              </td>
+            </tr>`;
+          return;
+        }
+
+        tbody.innerHTML = ports.map((port, index) => {
+          const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+          const logoImg = logodevApiKey && port.description
+            ? `<img src="https://img.logo.dev/name/${encodeURIComponent(port.description)}?token=${logodevApiKey}" width="24" height="24" alt="" style="border-radius:4px;" onerror="this.style.display='none'">`
+            : '';
+          return `
+          <tr>
+            <td>${logoImg}</td>
+            <td>${index + 1}</td>
+            <td><span class="badge bg-info text-dark">${esc(port.protocol)}</span></td>
+            <td>${esc(port.external_port)}</td>
+            <td>${esc(port.internal_address)}</td>
+            <td>${esc(port.internal_port)}</td>
+            <td>${esc(port.description)}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" onclick="deletePort(${port.id})">
+                Usuń
+              </button>
+            </td>
+          </tr>`;
+        }).join('');
+      }
+
+      // Add port form
+      document.getElementById('addPortForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('addPortBtn');
+        btn.disabled = true;
+        btn.textContent = 'Dodawanie...';
+        
+        const formData = new FormData(this);
+        
+        try {
+          const response = await fetch('/api/ports', {
+            method: 'POST',
+            body: formData
+          });
+          
+          const data = await response.json();
+          
+          if (data.success) {
+            // Close modal and reload
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addPortModal'));
+            modal.hide();
+            this.reset();
+            document.getElementById('modalError').style.display = 'none';
+            showAlert('Port dodany pomyślnie!', 'success');
+            loadPorts();
+          } else {
+            document.getElementById('modalError').style.display = 'block';
+            document.getElementById('modalError').textContent = data.error;
+          }
+        } catch (error) {
+          document.getElementById('modalError').style.display = 'block';
+          document.getElementById('modalError').textContent = 'Błąd: ' + error.message;
+        }
+        
+        btn.disabled = false;
+        btn.textContent = 'Dodaj';
+      });
+
+      async function deletePort(id) {
+        if (!confirm('Czy na pewno chcesz usunąć to przekierowanie?')) return;
+        
+        try {
+          const response = await fetch(`/api/ports/${id}`, {
+            method: 'DELETE'
+          });
+          
+          const data = await response.json();
+          
+          if (data.success) {
+            showAlert('Port usunięty.', 'success');
+            loadPorts();
+          } else {
+            showAlert(data.error, 'danger');
+          }
+        } catch (error) {
+          showAlert('Błąd: ' + error.message, 'danger');
+        }
+      }
+
+      function showAlert(message, type) {
+        const container = document.getElementById('alertContainer');
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type} alert-dismissible fade show`;
+        alert.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+        container.appendChild(alert);
+        
+        setTimeout(() => {
+          alert.classList.remove('show');
+          setTimeout(() => alert.remove(), 150);
+        }, 4000);
+      }
+    </script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="pl" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dokumentacja API · HALNyFucker</title>
+    <script src="{{ url_for('static', filename='js/color-modes.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+    <style>
+      body { min-height: 100vh; }
+      .navbar-brand img { height: 32px; }
+      .endpoint-card { border-left: 4px solid; }
+      .endpoint-card.get { border-left-color: #198754; }
+      .endpoint-card.post { border-left-color: #0d6efd; }
+      .endpoint-card.put { border-left-color: #fd7e14; }
+      .endpoint-card.delete { border-left-color: #dc3545; }
+      .method-badge { font-family: monospace; font-size: 0.75rem; }
+      pre { background: var(--bs-tertiary-bg); border-radius: 6px; padding: 1rem; overflow-x: auto; }
+      code { font-size: 0.85rem; }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path></symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path></symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path></symbol>
+    </svg>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/dashboard">
+          <img src="{{ url_for('static', filename='logo/logo.svg') }}" alt="Logo" />
+          HALNyFucker
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">Strona główna</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/settings">Ustawienia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/api-docs">Dokumentacja API</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary btn-sm dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Toggle theme (auto)">
+                <svg class="bi my-1 theme-icon-active" width="16" height="16" aria-hidden="true"><use href="#circle-half"></use></svg>
+                <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+                <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false"><svg class="bi me-2 opacity-50" width="16" height="16"><use href="#sun-fill"></use></svg>Jasny<svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg></button></li>
+                <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false"><svg class="bi me-2 opacity-50" width="16" height="16"><use href="#moon-stars-fill"></use></svg>Ciemny<svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg></button></li>
+                <li><button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true"><svg class="bi me-2 opacity-50" width="16" height="16"><use href="#circle-half"></use></svg>Automatyczny<svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg></button></li>
+              </ul>
+            </div>
+            <span class="text-body-secondary">{{ username }}</span>
+            <a href="/logout" class="btn btn-outline-danger btn-sm">Wyloguj</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container mt-4 mb-5">
+      <h2 class="mb-2">Dokumentacja API</h2>
+      <p class="text-body-secondary mb-4">Wszystkie endpointy wymagają nagłówka <code>X-API-Key</code>. Klucz wygenerujesz w <a href="/settings">Ustawieniach</a>.</p>
+
+      <div class="alert alert-info">
+        <strong>Base URL:</strong> <code>http://&lt;adres&gt;:42569/api/v1</code><br>
+        <strong>Autoryzacja:</strong> <code>X-API-Key: hf_twoj_klucz</code><br>
+        <strong>Content-Type:</strong> <code>application/json</code> (dla POST/PUT)
+      </div>
+
+      <!-- Status -->
+      <h4 class="mt-4 mb-3">System</h4>
+      <div class="card endpoint-card get mb-3">
+        <div class="card-body">
+          <h6><span class="badge bg-success method-badge me-2">GET</span> /api/v1/status</h6>
+          <p class="text-body-secondary mb-2">Ogólny status systemu.</p>
+          <p class="mb-1"><strong>Odpowiedź:</strong></p>
+<pre><code>{
+  "success": true,
+  "version": "1.0.0",
+  "uptime_seconds": 3600,
+  "upnp_online": true,
+  "port_count": 5,
+  "router_ip": "192.168.55.1"
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Ports -->
+      <h4 class="mt-4 mb-3">Porty</h4>
+
+      <div class="card endpoint-card get mb-3">
+        <div class="card-body">
+          <h6><span class="badge bg-success method-badge me-2">GET</span> /api/v1/ports</h6>
+          <p class="text-body-secondary mb-2">Lista wszystkich portów.</p>
+          <p class="mb-1"><strong>Odpowiedź:</strong></p>
+<pre><code>{
+  "success": true,
+  "ports": [
+    {
+      "id": 1,
+      "protocol": "TCP",
+      "external_port": 25565,
+      "internal_address": "192.168.55.150",
+      "internal_port": 25565,
+      "description": "Minecraft"
+    }
+  ]
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="card endpoint-card post mb-3">
+        <div class="card-body">
+          <h6><span class="badge bg-primary method-badge me-2">POST</span> /api/v1/ports</h6>
+          <p class="text-body-secondary mb-2">Dodaj nowy port. Automatycznie dodaje do UPnP.</p>
+          <p class="mb-1"><strong>Body (JSON):</strong></p>
+<pre><code>{
+  "protocol": "TCP",        // TCP, UDP lub TCP/UDP
+  "external_port": 25565,
+  "internal_address": "192.168.55.150",
+  "internal_port": 25565,
+  "description": "Minecraft"
+}</code></pre>
+          <p class="mb-1"><strong>Odpowiedź (201):</strong></p>
+<pre><code>{
+  "success": true,
+  "id": 1,
+  "message": "Port dodany"
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="card endpoint-card delete mb-3">
+        <div class="card-body">
+          <h6><span class="badge bg-danger method-badge me-2">DELETE</span> /api/v1/ports/:id</h6>
+          <p class="text-body-secondary mb-2">Usuń port. Automatycznie usuwa z UPnP.</p>
+          <p class="mb-1"><strong>Odpowiedź:</strong></p>
+<pre><code>{
+  "success": true,
+  "message": "Port usunięty"
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- UPnP -->
+      <h4 class="mt-4 mb-3">UPnP</h4>
+
+      <div class="card endpoint-card get mb-3">
+        <div class="card-body">
+          <h6><span class="badge bg-success method-badge me-2">GET</span> /api/v1/upnp/status</h6>
+          <p class="text-body-secondary mb-2">Sprawdź czy UPnP jest online.</p>
+          <p class="mb-1"><strong>Odpowiedź:</strong></p>
+<pre><code>{
+  "success": true,
+  "online": true
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="card endpoint-card get mb-3">
+        <div class="card-body">
+          <h6><span class="badge bg-success method-badge me-2">GET</span> /api/v1/upnp/mappings</h6>
+          <p class="text-body-secondary mb-2">Pobierz aktualną listę port mappings bezpośrednio z routera (live).</p>
+          <p class="mb-1"><strong>Odpowiedź:</strong></p>
+<pre><code>{
+  "success": true,
+  "mappings": [
+    {
+      "protocol": "UDP",
+      "external_port": 34632,
+      "internal_port": 41641,
+      "internal_address": "192.168.55.173",
+      "description": "tailscale-portmap",
+      "enabled": true
+    }
+  ]
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="card endpoint-card post mb-3">
+        <div class="card-body">
+          <h6><span class="badge bg-primary method-badge me-2">POST</span> /api/v1/upnp/restart</h6>
+          <p class="text-body-secondary mb-2">Wymuś restart UPnP na routerze (wyłącz → włącz).</p>
+          <p class="mb-1"><strong>Odpowiedź:</strong></p>
+<pre><code>{
+  "success": true,
+  "message": "UPnP zrestartowany"
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <h4 class="mt-4 mb-3">Ustawienia</h4>
+
+      <div class="card endpoint-card get mb-3">
+        <div class="card-body">
+          <h6><span class="badge bg-success method-badge me-2">GET</span> /api/v1/settings</h6>
+          <p class="text-body-secondary mb-2">Pobierz aktualne ustawienia.</p>
+          <p class="mb-1"><strong>Odpowiedź:</strong></p>
+<pre><code>{
+  "success": true,
+  "settings": {
+    "auto_add_ports": false,
+    "auto_restart_upnp": true,
+    "logodev_api_key": null
+  }
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="card endpoint-card put mb-3">
+        <div class="card-body">
+          <h6><span class="badge text-bg-warning method-badge me-2">PUT</span> /api/v1/settings</h6>
+          <p class="text-body-secondary mb-2">Zmień ustawienie.</p>
+          <p class="mb-1"><strong>Body (JSON):</strong></p>
+<pre><code>{
+  "key": "auto_restart_upnp",   // auto_add_ports, auto_restart_upnp, logodev_api_key
+  "value": true                  // true/false dla bool, string dla reszty
+}</code></pre>
+          <p class="mb-1"><strong>Odpowiedź:</strong></p>
+<pre><code>{
+  "success": true,
+  "message": "Zapisano"
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Errors -->
+      <h4 class="mt-4 mb-3">Kody błędów</h4>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr><th>Kod</th><th>Znaczenie</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>200</code></td><td>OK</td></tr>
+            <tr><td><code>201</code></td><td>Utworzono (nowy port)</td></tr>
+            <tr><td><code>400</code></td><td>Błędne dane wejściowe</td></tr>
+            <tr><td><code>401</code></td><td>Brak klucza API</td></tr>
+            <tr><td><code>403</code></td><td>Nieprawidłowy klucz API</td></tr>
+            <tr><td><code>404</code></td><td>Nie znaleziono (np. port o danym ID)</td></tr>
+            <tr><td><code>500</code></td><td>Błąd serwera</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Example -->
+      <h4 class="mt-4 mb-3">Przykład (curl)</h4>
+<pre><code># Status
+curl http://localhost:42569/api/v1/status -H "X-API-Key: hf_twoj_klucz"
+
+# Dodaj port
+curl http://localhost:42569/api/v1/ports \
+  -H "X-API-Key: hf_twoj_klucz" \
+  -H "Content-Type: application/json" \
+  -X POST \
+  -d '{"protocol":"TCP","external_port":25565,"internal_address":"192.168.55.150","internal_port":25565,"description":"Minecraft"}'
+
+# Usuń port
+curl http://localhost:42569/api/v1/ports/1 -H "X-API-Key: hf_twoj_klucz" -X DELETE
+
+# Restart UPnP
+curl http://localhost:42569/api/v1/upnp/restart -H "X-API-Key: hf_twoj_klucz" -X POST</code></pre>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  </body>
+</html>
