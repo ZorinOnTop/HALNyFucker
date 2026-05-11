@@ -1,0 +1,14 @@
+[Unit]
+Description=HALNyFucker - Port Forwarder for HALNy routers
+After=network.target
+
+[Service]
+Type=simple
+User=USER
+WorkingDirectory=/home/USER/HALNyFucker
+ExecStart=/usr/bin/python3 main.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
